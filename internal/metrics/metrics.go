@@ -21,9 +21,19 @@ var (
 		},
 		[]string{"crud_type"},
 	)
+
+	StartTime = prometheus.NewHistogramVec(
+		prometheus.HistogramOpts{
+			Name: "start_time",
+			Help: "Time to start app",
+			Buckets: prometheus.DefBuckets,
+		},
+		[]string{},
+	)
 )
 
 func init() {
 	prometheus.MustRegister(RequestCount)
 	prometheus.MustRegister(RequestDuration)
+	prometheus.MustRegister(StartTime)
 }
